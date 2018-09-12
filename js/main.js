@@ -1,7 +1,6 @@
 // https://github.com/tsuyopon-xyz/drawing_app_part1/blob/master/main.js
 // 上記のコードを元に以下の追加機能を追加します。
 // - 線の色を変更する機能
-// - 線の太さを変更する機能
 // - 消しゴム機能
 //
 // 元々書かれてた説明のコメントは削除しました。理由は次のとおりです。
@@ -55,6 +54,14 @@ window.addEventListener('load', () => {
   function initEventHandler() {
     const clearButton = document.querySelector('#clear-button');
     clearButton.addEventListener('click', clear);
+
+    // 消しゴムモードを選択したときの挙動
+    const eraserButton = document.querySelector('#eraser-button');
+    eraserButton.addEventListener('click', () => {
+      // 消しゴムと同等の機能を実装したい場合は現在選択している線の色を
+      // 白(#FFFFFF)に変更するだけでよい
+      currentColor = '#FFFFFF';
+    });
 
     canvas.addEventListener('mousedown', dragStart);
     canvas.addEventListener('mouseup', dragEnd);
