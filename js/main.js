@@ -131,7 +131,7 @@ window.addEventListener('load', () => {
     });
   }
 
-  // 文字の太さの設定を行う機能
+  // 文字の太さの設定・更新を行う機能
   function initConfigOfLineWidth() {
     const textForCurrentSize = document.querySelector('#line-width');
     const rangeSelector = document.querySelector('#range-selector');
