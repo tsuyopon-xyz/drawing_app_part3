@@ -11,13 +11,17 @@ window.addEventListener('load', () => {
   let isDrag = false;
   let currentColor = '#000000';
 
+  // 現在の線の太さを記憶する変数
+  // <input id="range-selector" type="range"> の値と連動する
+  let currentLineWidth = 1;
+
   function draw(x, y) {
     if(!isDrag) {
       return;
     }
     context.lineCap = 'round';
     context.lineJoin = 'round';
-    context.lineWidth = 5;
+    context.lineWidth = currentLineWidth;
     context.strokeStyle = currentColor;
     if (lastPosition.x === null || lastPosition.y === null) {
       context.moveTo(x, y);
@@ -71,6 +75,27 @@ window.addEventListener('load', () => {
     });
   }
 
+  // 文字の太さの設定を行う機能
+  function initConfigOfLineWidth() {
+    const textForCurrentSize = document.querySelector('#line-width');
+    const rangeSelector = document.querySelector('#range-selector');
+
+    // "input"イベントをセットすることでスライド中の値も取得できるようになる。
+    // ドキュメント: https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input/range
+    rangeSelector.addEventListener('input', event => {
+      const width = event.target.value;
+
+      // 線の太さを記憶している変数の値を更新する
+      currentLineWidth = width;
+
+      // 更新した線の太さ値(数値)を<input id="range-selector" type="range">の右側に表示する
+      textForCurrentSize.innerText = width;
+    });
+  }
+
   initEventHandler();
   initColorPalette();
+
+  // 文字の太さの設定を行う機能を有効にする
+  initConfigOfLineWidth();
 });
