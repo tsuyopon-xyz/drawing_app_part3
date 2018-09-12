@@ -10,11 +10,20 @@
 <body>
   <h1>お絵かきアプリ</h1>
   <div>
-    <canvas
-      id="draw-area"
-      width="400px"
-      height="400px"
-      style="border: 1px solid #000000;"></canvas>
+    <span id="layerd-canvas-area">
+      <!-- "position: absolute;" を利用することで2つのcanvasを重ねている -->
+      <!-- 2つのcanvasを重ねている理由は線の描画と、線の太さを表現する「○」を同時に行うため。 -->
+      <canvas
+        id="draw-area"
+        width="400px"
+        height="400px"
+        style="border: 1px solid #000000; position: absolute;"></canvas>
+      <canvas
+        id="line-width-indicator"
+        width="400px"
+        height="400px"
+        style="border: 1px solid #000000;"></canvas>
+    </span>
     <span id="color-palette"></span>
   </div>
   <!-- 線の太さを変更するために <input type="range">を利用する -->
@@ -25,13 +34,13 @@
     <input
       id="range-selector"
       type="range"
-      value="1"
+      value="5"
       min="1"
       max="10"
       step="0.1">
     <!-- 現在の線の太さを表す数値を表示するための要素 -->
     <!-- input要素のスライドを動かすたびに値が更新される -->
-    <span id="line-width">1</span>
+    <span id="line-width">5</span>
   </div>
 
   <div>
